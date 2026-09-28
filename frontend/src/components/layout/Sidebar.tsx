@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard,
@@ -12,18 +12,19 @@ import {
   Sparkles,
   Layers,
   Globe,
+  Home,
 } from 'lucide-react';
 import { useMemoryStats } from '../../api/queries';
 
 const NAV_ITEMS = [
-  { path: '/', label: 'Dashboard', icon: LayoutDashboard },
+  { path: '/', label: 'Home Page', icon: Home, badge: 'Public' },
+  { path: '/app', label: 'Hub Dashboard', icon: LayoutDashboard },
   { path: '/contacts/jane-doe', label: 'Contact Brief', icon: Users, badge: 'Flagship' },
   { path: '/competitors/apex-cloud', label: 'Competitor Timeline', icon: Compass },
   { path: '/campaigns', label: 'Campaigns', icon: Megaphone },
   { path: '/feedback', label: 'Feedback Themes', icon: MessageSquare },
   { path: '/content', label: 'Content Library', icon: FileText },
   { path: '/onboard', label: 'Onboard Me', icon: UserPlus },
-  { path: '/landing', label: 'Marketing Page', icon: Globe, badge: 'Public' },
   { path: '/preview', label: 'Design System', icon: Layers },
 ];
 
@@ -32,20 +33,20 @@ export const Sidebar: React.FC = () => {
 
   return (
     <aside className="hidden md:flex flex-col w-64 h-[calc(100vh-2rem)] m-4 sticky top-4 bg-white/95 backdrop-blur-md rounded-3xl p-5 border border-[#E5E7EB] shadow-sm shrink-0 z-30 select-none">
-      {/* Brand Logo matching Landing Page */}
-      <div className="flex items-center gap-3 px-2 py-3 mb-4">
-        <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#0E7C7B] to-[#17B890] flex items-center justify-center text-white shadow-md">
+      {/* Brand Logo directing to Home Page */}
+      <Link to="/" className="flex items-center gap-3 px-2 py-3 mb-4 group cursor-pointer" title="Go to Home Page">
+        <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#0E7C7B] to-[#17B890] flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
           <Sparkles className="w-5 h-5" />
         </div>
         <div>
-          <span className="font-display font-extrabold text-base tracking-tight text-[#111318] block leading-tight">
+          <span className="font-display font-extrabold text-base tracking-tight text-[#111318] block leading-tight group-hover:text-[#0E7C7B] transition-colors">
             Prelude
           </span>
           <span className="text-[10px] font-mono text-[#0E7C7B] uppercase tracking-widest block font-bold leading-tight">
             Intelligence Hub
           </span>
         </div>
-      </div>
+      </Link>
 
       {/* Navigation List */}
       <nav className="flex-1 space-y-1.5 overflow-y-auto pr-1">

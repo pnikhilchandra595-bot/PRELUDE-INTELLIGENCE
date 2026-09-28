@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Sparkles, Database, Activity, Wifi, Shield } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Search, Sparkles, Database, Activity, Wifi, Shield, Home } from 'lucide-react';
 import { TimeMachineControl } from './TimeMachineControl';
 import { clientConfig, updateClientConfig, subscribeClientConfig } from '../../api/client';
 
@@ -43,6 +44,16 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenBriefMe }) => {
 
         {/* Global Controls & Status */}
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          {/* Direct link to Home Page */}
+          <Link
+            to="/"
+            title="Go to Public Home Page"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium border border-[#E5E7EB] transition-all cursor-pointer bg-[#F7F8F9] hover:bg-white text-[#111318] hover:text-[#0E7C7B] shadow-sm"
+          >
+            <Home className="w-3.5 h-3.5 text-[#0E7C7B]" />
+            <span className="hidden sm:inline font-semibold">Home</span>
+          </Link>
+
           {/* Time Machine Fast-Forward */}
           <TimeMachineControl />
 

@@ -64,6 +64,7 @@ export const App: React.FC = () => {
 
           {/* Direct App Routing for seamless deep links */}
           <Route element={<AppLayout />}>
+            <Route path="/dashboard" element={<Navigate to="/app" replace />} />
             <Route path="/contacts" element={<Navigate to="/app/contacts/jane-doe" replace />} />
             <Route path="/contacts/:id" element={<ContactBriefPage />} />
             <Route path="/competitors" element={<Navigate to="/app/competitors/apex-cloud" replace />} />
