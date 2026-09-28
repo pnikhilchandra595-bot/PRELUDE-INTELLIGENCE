@@ -122,5 +122,7 @@ The repository features comprehensive technical, architectural, and operational 
 - 💻 **[Developer Guide](file:///c:/Users/Nikhil%20Chandra/hackmicro/docs/DEVELOPER_GUIDE.md)** — Local setup, testing procedures, memory APIs, and contribution rules
 - 🔌 **[API Contract & Schema Specification](file:///c:/Users/Nikhil%20Chandra/hackmicro/docs/API_CONTRACT.md)** — Complete REST schemas for all endpoints
 - 🧠 **[How Hindsight Memory is Used & Value Proposition](file:///c:/Users/Nikhil%20Chandra/hackmicro/docs/HINDSIGHT_EXPLANATION.md)** — Vectorize Hindsight memory mechanics and cognitive graph
+- 📄 **[Technical Write-up Article](file:///c:/Users/Nikhil%20Chandra/hackmicro/docs/TECHNICAL_ARTICLE.md)** — 1,200-word comprehensive architectural essay on persistent memory vs naive RAG
+
 
 

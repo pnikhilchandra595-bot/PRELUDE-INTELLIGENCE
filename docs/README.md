@@ -14,6 +14,7 @@ Welcome to the comprehensive documentation library for **Prelude Intelligence**,
 | **[Deployment Guide](file:///c:/Users/Nikhil%20Chandra/hackmicro/docs/DEPLOYMENT_GUIDE.md)** | Local execution, Docker Compose orchestration, Cloud deployment (GCP/AWS/VPS), and environment configuration. | DevOps, SREs, System Admins |
 | **[API Contract Specification](file:///c:/Users/Nikhil%20Chandra/hackmicro/docs/API_CONTRACT.md)** | Detailed REST schemas, request/response models, and status codes for all endpoints. | API Consumers, Integrators |
 | **[Hindsight Memory Mechanics](file:///c:/Users/Nikhil%20Chandra/hackmicro/docs/HINDSIGHT_EXPLANATION.md)** | Deep technical dive on how Vectorize Hindsight transforms institutional data into evolving memory graphs. | AI Engineers, Hackathon Judges |
+| **[Technical Write-up Article](file:///c:/Users/Nikhil%20Chandra/hackmicro/docs/TECHNICAL_ARTICLE.md)** | Full 1,200-word deep-dive article on enterprise context amnesia, architecture, and memory paradigms. | Hackathon Judges, Readers, Evaluators |
 
 ---
 
