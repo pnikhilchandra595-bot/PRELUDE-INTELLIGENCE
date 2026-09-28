@@ -1,0 +1,41 @@
+# Environment variables
+.env
+*.env
+.env.*
+!.env.example
+
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+
+# Node & Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+.next/
+out/
+.vite/
+
+# Testing & caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local backup / duplicate unzipped dirs
+ai-agents-main/
+prelude-intelligence 2/
+
