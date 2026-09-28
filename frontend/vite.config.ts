@@ -5,4 +5,5 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [react()],
   base: './',
+  envPrefix: ['VITE_', 'Next_VITE_', 'NEXT_'],
 })

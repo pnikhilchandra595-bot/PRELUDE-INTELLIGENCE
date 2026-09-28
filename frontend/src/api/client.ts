@@ -41,9 +41,29 @@ export interface ClientConfig {
   forcedErrorCode: ErrorCode | null;
 }
 
+function getInitialBaseUrl(): string {
+  const env = (import.meta as any).env || {};
+  let rawUrl: string =
+    env.Next_VITE_API_URL ||
+    env.VITE_API_URL ||
+    env.VITE_API_BASE_URL ||
+    env.NEXT_PUBLIC_API_URL ||
+    '';
+
+  if (!rawUrl || !rawUrl.trim()) {
+    return 'http://127.0.0.1:8000/api/v1';
+  }
+
+  rawUrl = rawUrl.trim().replace(/\/+$/, '');
+  if (!rawUrl.endsWith('/api/v1')) {
+    rawUrl = `${rawUrl}/api/v1`;
+  }
+  return rawUrl;
+}
+
 export const clientConfig: ClientConfig = {
   useMock: false, // Default to live API as requested, with graceful fallback to mocks
-  baseUrl: (import.meta as any).env?.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api/v1',
+  baseUrl: getInitialBaseUrl(),
   simulatedDelayMs: 500, // 400-800ms simulated latency
   forcedErrorCode: null,
 };
