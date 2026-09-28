@@ -7,10 +7,12 @@ import {
   Megaphone,
   MessageSquare,
   UserPlus,
+  Home,
 } from 'lucide-react';
 
 const MOBILE_NAV = [
-  { path: '/', label: 'Dash', icon: LayoutDashboard },
+  { path: '/', label: 'Home', icon: Home },
+  { path: '/app', label: 'Hub', icon: LayoutDashboard },
   { path: '/contacts/jane-doe', label: 'Brief', icon: Users },
   { path: '/competitors/apex-cloud', label: 'Timeline', icon: Compass },
   { path: '/campaigns', label: 'Campaigns', icon: Megaphone },
