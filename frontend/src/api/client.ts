@@ -195,8 +195,20 @@ async function dispatchMockRequest<T>(endpoint: string, options: RequestInit): P
   // 2. GET /competitors/:id/timeline
   const compTimelineMatch = path.match(/^\/competitors\/([^/]+)\/timeline$/);
   if (compTimelineMatch && (!options.method || options.method === 'GET')) {
-    const competitorId = compTimelineMatch[1];
-    let events = MOCK_COMPETITOR_EVENTS[competitorId] || MOCK_COMPETITOR_EVENTS['apex-cloud'] || [];
+    const rawCompId = decodeURIComponent(compTimelineMatch[1]).trim().toLowerCase().replace(/\s+/g, '-');
+    const normCompId =
+      rawCompId.includes('apex') || rawCompId === 'comp-apex'
+        ? 'apex-cloud'
+        : rawCompId.includes('synth') || rawCompId === 'comp-synth'
+        ? 'synth-ai'
+        : rawCompId.includes('vortex') || rawCompId === 'comp-vortex'
+        ? 'vortex-stack'
+        : rawCompId;
+    let events =
+      MOCK_COMPETITOR_EVENTS[normCompId] ||
+      MOCK_COMPETITOR_EVENTS[compTimelineMatch[1]] ||
+      MOCK_COMPETITOR_EVENTS['apex-cloud'] ||
+      [];
     const fromDate = params.get('from');
     const toDate = params.get('to');
 

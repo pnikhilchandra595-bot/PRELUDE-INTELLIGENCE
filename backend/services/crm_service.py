@@ -210,13 +210,31 @@ class CRMAndCompetitorService:
     def get_competitors(self) -> List[Dict[str, Any]]:
         return self._competitors
 
+    def _normalize_competitor_id(self, competitor_id: str) -> str:
+        clean = competitor_id.lower().strip().replace(" ", "-").replace("_", "-")
+        if clean in ("comp-apex", "apex-cloud", "apexcloud", "apex"):
+            return "comp-apex"
+        if clean in ("comp-synth", "synth-ai", "synthai", "synth"):
+            return "comp-synth"
+        if clean in ("comp-vortex", "vortex-stack", "vortexstack", "vortex"):
+            return "comp-vortex"
+        if clean in ("datasphere", "datasphere-enterprise"):
+            return "datasphere"
+        if clean in ("vectorscale", "vectorscale-labs"):
+            return "vectorscale"
+        return competitor_id
+
     def get_competitor_timeline(
         self,
         competitor_id: str,
         from_date: Optional[str] = None,
         to_date: Optional[str] = None
     ) -> List[Dict[str, Any]]:
-        events = list(self._competitor_events.get(competitor_id, []))
+        norm_id = self._normalize_competitor_id(competitor_id)
+        events = list(self._competitor_events.get(norm_id, []) or self._competitor_events.get(competitor_id, []))
+        if not events and self._competitor_events:
+            # Fallback to apex-cloud events if unknown
+            events = list(self._competitor_events.get("comp-apex", []))
         if from_date:
             events = [e for e in events if e["event_date"] >= from_date]
         if to_date:

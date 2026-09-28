@@ -36,13 +36,29 @@ export const CompetitorTimelinePage: React.FC = () => {
   const navigate = useNavigate();
 
   const { data: competitors } = useCompetitors();
-  const { data: events, isLoading, isError, error, refetch } = useCompetitorTimeline(id);
 
   const [selectedType, setSelectedType] = useState<string>('all');
   const [viewMode, setViewMode] = useState<'timeline' | 'matrix'>('timeline');
   const [isBattlecardOpen, setIsBattlecardOpen] = useState(false);
 
-  const currentCompetitor = competitors?.find((c) => c.id === id) || competitors?.[0];
+  const rawId = decodeURIComponent(id || 'apex-cloud').trim();
+  const normalizedSlug = rawId.toLowerCase().replace(/\s+/g, '-');
+
+  const currentCompetitor =
+    competitors?.find(
+      (c) =>
+        c.id.toLowerCase() === rawId.toLowerCase() ||
+        c.id.toLowerCase() === normalizedSlug ||
+        c.name.toLowerCase().replace(/\s+/g, '-') === normalizedSlug ||
+        (normalizedSlug.includes('apex') && (c.id === 'comp-apex' || c.id === 'apex-cloud')) ||
+        (normalizedSlug.includes('synth') && (c.id === 'comp-synth' || c.id === 'synth-ai')) ||
+        (normalizedSlug.includes('vortex') && (c.id === 'comp-vortex' || c.id === 'vortex-stack')) ||
+        (normalizedSlug.includes('datasphere') && c.id === 'datasphere') ||
+        (normalizedSlug.includes('vector') && c.id === 'vectorscale')
+    ) || competitors?.[0];
+
+  const targetCompetitorId = currentCompetitor?.id || normalizedSlug || 'apex-cloud';
+  const { data: events, isLoading, isError, error, refetch } = useCompetitorTimeline(targetCompetitorId);
 
   const filteredEvents = events?.filter((ev) => {
     if (selectedType === 'all') return true;
